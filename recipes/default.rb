@@ -4,8 +4,10 @@
 #
 #
 
+attributes = node['sensu-handlers']
+
 cookbook_file 'base.rb' do
-  path "#{node['sensu-handlers']['handler_dir']}/base.rb"
+  path "#{attributes['handler_dir']}/base.rb"
   action :create_if_missing
   backup false
   owner 'root'
@@ -18,13 +20,15 @@ include_recipe 'sensu-handlers::_sensu'
 sensu_handler 'default' do
   type 'set'
   command true
-  handlers node['sensu-handlers']['default_handler_array']
+  handlers attributes['default_handler_array']
   additional(
-    dashboard_link: node['sensu-handlers']['dashboard_link']
+    dashboard_link: attributes['dashboard_link']
   )
 end
 
 # Include the recipes for the handlers defined in the default_handler_array attribute
-node['sensu-handlers']['default_handler_array'].each do |handler|
+attributes['default_handler_array'].each do |handler|
   include_recipe "sensu-handlers::#{handler}"
 end
+
+include_recipe 'sensu-handlers::aws_prune' if attributes['enable_aws_prune']

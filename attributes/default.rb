@@ -10,6 +10,9 @@ default['sensu-handlers']['default_handler_array'] = %w(pagerduty mailer)
 
 default['sensu-handlers']['dashboard_link'] = "https://sensu.#{node['domain']}"
 
+#<> Boolean to determine if aws_prune recipe should be included
+default['sensu-handlers']['enable_aws_prune'] = false
+
 # Default JIRA credentials
 default['sensu-handlers']['jira_username'] = 'sensu'
 default['sensu-handlers']['jira_password'] = 'sensu'
