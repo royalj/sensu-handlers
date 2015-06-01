@@ -1,0 +1,24 @@
+SingleSpaceBeforeFirstArg:
+  Exclude:
+    - "**/metadata.rb"
+
+LeadingCommentSpace:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/ClassLength:
+  Max: 175
+
+Metrics/MethodLength:
+  Max: 60
+
+Metrics/CyclomaticComplexity:
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 50
+
+Lint/PerceivedComplexity:
+  Max: 50
