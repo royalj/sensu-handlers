@@ -5,8 +5,11 @@ default['sensu-handlers']['handler_dir'] = '/opt/sensu/handlers'
 #<> Hash to define the different teams, which will effect the behavior of the handlers.
 default['sensu-handlers']['teams'] = {}
 
-#<> Array of handlers you want created. Array elements correspond to included recipes.
-default['sensu-handlers']['default_handler_array'] = %w(pagerduty mailer)
+#<> Array of handlers you want created.
+# Array elements correspond to included recipes. By including the cookbook it allows users to
+# append this array to use handlers outside the scope of this cookbook.
+default['sensu-handlers']['default_handler_array'] = \
+  %w(sensu-handlers::pagerduty sensu-handlers::mailer)
 
 default['sensu-handlers']['dashboard_link'] = "https://sensu.#{node['domain']}"
 

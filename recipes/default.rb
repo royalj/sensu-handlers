@@ -2,7 +2,6 @@
 # Cookbook Name:: sensu-handlers
 # Recipe:: default
 #
-#
 
 attributes = node['sensu-handlers']
 
@@ -28,7 +27,5 @@ end
 
 # Include the recipes for the handlers defined in the default_handler_array attribute
 attributes['default_handler_array'].each do |handler|
-  include_recipe "sensu-handlers::#{handler}"
+  include_recipe handler
 end
-
-include_recipe 'sensu-handlers::aws_prune' if attributes['enable_aws_prune']

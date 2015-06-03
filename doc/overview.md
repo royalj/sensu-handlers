@@ -17,10 +17,10 @@ If this data is not provided, these handlers will do nothing.
 The simplest way to set the `teams` attribute is to do so explicitly within a recipe, but 
 you can also utilize a Chef data bag to store and load team information.
 
-### Set within recipe
+### Set within recipe/atribute file
 
 ```
-node.default['sensu-handlers']['teams'] = \
+default['sensu-handlers']['teams'] = \ # add node.default... if setting within recipe
 {
   ops: {
     pagerduty_api_key: '11111',
