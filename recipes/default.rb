@@ -3,6 +3,13 @@
 # Recipe:: default
 #
 
+directory '/opt/sensu/handlers' do
+  owner 'sensu'
+  group 'sensu'
+  mode '0755'
+  recursive true
+end
+
 attributes = node['sensu-handlers']
 
 cookbook_file 'base.rb' do
@@ -16,10 +23,17 @@ end
 
 include_recipe 'sensu-handlers::_sensu'
 
+reg = /::.*/
+default_handler_array = []
+
+attributes['default_handlers'].each do |x|
+  x = x.match(reg).to_s.gsub(/:/, '')
+  default_handler_array << x
+end
+
 sensu_handler 'default' do
   type 'set'
-  command true
-  handlers attributes['default_handler_array']
+  handlers default_handler_array
   additional(
     dashboard_link: attributes['dashboard_link']
   )

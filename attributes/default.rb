@@ -8,7 +8,7 @@ default['sensu-handlers']['teams'] = {}
 #<> Array of handlers you want created.
 # Array elements correspond to included recipes. By including the cookbook it allows users to
 # append this array to use handlers outside the scope of this cookbook.
-default['sensu-handlers']['default_handler_array'] = \
+default['sensu-handlers']['default_handlers'] = \
   %w(sensu-handlers::pagerduty sensu-handlers::mailer)
 
 default['sensu-handlers']['dashboard_link'] = "https://sensu.#{node['domain']}"
@@ -20,3 +20,8 @@ default['sensu-handlers']['enable_aws_prune'] = false
 default['sensu-handlers']['jira_username'] = 'sensu'
 default['sensu-handlers']['jira_password'] = 'sensu'
 default['sensu-handlers']['jira_site'] = "jira.#{node['domain']}"
+
+# Disable ssl by default
+default['sensu']['use_ssl'] = false
+default['sensu']['rabbitmq']['port'] = '5672'
+default['sensu']['use_embedded_ruby'] = true

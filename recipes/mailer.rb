@@ -21,6 +21,7 @@ sensu_handler 'mailer' do
   type 'pipe'
   command "#{node['sensu-handlers']['handler_dir']}/mailer.rb"
   additional(
-    teams: node['sensu-handlers']['teams']
+    teams: node['sensu-handlers']['teams'],
+    mail_from: "sensu@#{node['domain']}"
   )
 end

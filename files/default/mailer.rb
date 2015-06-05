@@ -62,9 +62,9 @@ class Mailer < BaseHandler
     # Only procede if we have an email address to work with
     return false unless mail_to
 
-    mail_from = "sensu@#{node['domain']}"
+    mail_from = "sensu@#{settings['handlers'][self.class.name.downcase]['mail_from']}"
 
-    mailer = setting['mailer']
+    mailer = settings['handlers']
 
     delivery_method = mailer['delivery_method'] || 'smtp'
     smtp_address = mailer['smtp_address'] || 'localhost'
