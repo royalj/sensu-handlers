@@ -11,7 +11,7 @@ cookbook_file 'pagerduty.rb' do
   backup false
   owner 'sensu'
   group 'sensu'
-  mode '0644'
+  mode '0755'
 end
 
 sensu_handler 'pagerduty' do

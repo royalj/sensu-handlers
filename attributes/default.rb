@@ -11,6 +11,8 @@ default['sensu-handlers']['teams'] = {}
 default['sensu-handlers']['default_handlers'] = \
   %w(sensu-handlers::pagerduty sensu-handlers::mailer)
 
+default['sensu-handlers']['mail_from'] = "bke_sensu@#{node['domain']}"
+
 default['sensu-handlers']['dashboard_link'] = "https://sensu.#{node['domain']}"
 
 #<> Boolean to determine if aws_prune recipe should be included

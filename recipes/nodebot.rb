@@ -9,7 +9,7 @@ cookbook_file 'nodebot.rb' do
   backup false
   owner 'sensu'
   group 'sensu'
-  mode '0644'
+  mode '0755'
 end
 
 sensu_handler 'nodebot' do

@@ -14,7 +14,7 @@ cookbook_file 'jira.rb' do
   backup false
   owner 'sensu'
   group 'sensu'
-  mode '0644'
+  mode '0755'
 end
 
 attributes = node['sensu-handlers']

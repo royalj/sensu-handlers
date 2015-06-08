@@ -16,9 +16,9 @@ cookbook_file 'base.rb' do
   path "#{attributes['handler_dir']}/base.rb"
   action :create_if_missing
   backup false
-  owner 'root'
-  group 'root'
-  mode '0644'
+  owner 'sensu'
+  group 'sensu'
+  mode '0755'
 end
 
 include_recipe 'sensu-handlers::_sensu'
@@ -40,6 +40,6 @@ sensu_handler 'default' do
 end
 
 # Include the recipes for the handlers defined in the default_handler_array attribute
-attributes['default_handler_array'].each do |handler|
+attributes['default_handlers'].each do |handler|
   include_recipe handler
 end
