@@ -2,12 +2,16 @@
 # Cookbook Name:: sensu-handlers
 # Recipe:: pagerduty
 #
-# == Class: sensu_handlers::pagerduty
-#
-# Sensu handler for communicating with Pagerduty
-#
 
 sensu_gem 'redphone'
+
+cookbook_file 'pagerduty.rb' do
+  path "#{node['sensu-handlers']['handler_dir']}/pagerduty.rb"
+  backup false
+  owner 'sensu'
+  group 'sensu'
+  mode '0755'
+end
 
 sensu_handler 'pagerduty' do
   type 'pipe'

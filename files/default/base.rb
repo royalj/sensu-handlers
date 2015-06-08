@@ -57,7 +57,8 @@ class BaseHandler < Sensu::Handler
 
   def team_data(lookup_key = nil)
     return unless team_name
-    data = settings[self.class.name.downcase]['teams'][team_name] || {}
+    #self.class element does not work with how Chef builds sensu handlers
+    data = settings['handlers'][self.class.name.downcase]['teams'][team_name] || {}
     data = data[lookup_key] if lookup_key
     yield(data) if data && block_given?
     data
@@ -126,9 +127,7 @@ BODY
   end
 
   def dashboard_link
-    settings['default']['dashboard_link'].gsub(%r{/}, '')
-    "#{settings['default']['dashboard_link']}/#/client/#{settings['default']['datacenter']}/"\
-      "#{@event['client']['name']}?check=#{@event['check']['name']}" || \
+    settings['handlers']['default']['dashboard_link'] || \
       'Unknown dashboard link. Please set for the base handler config'
   end
 

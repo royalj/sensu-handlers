@@ -1,4 +1,9 @@
 # WORK IN PROGRESS
+The mailer and pagerduty handlers/scripts are my first priority to get working. Due to some 
+differences in how the sensu puppet module and the sensu chef cookbook create handlers the 
+scripts are having some small refactoring done. I'm no Ruby or Chef wizard so
+question/comments/concerns are welcome. Also right now writing spec and integration tests 
+haven't taken a priority, but once I'm closer to a stable first pass tests will be added.
 
 # sensu-handlers
 
@@ -17,10 +22,10 @@ If this data is not provided, these handlers will do nothing.
 The simplest way to set the `teams` attribute is to do so explicitly within a recipe, but 
 you can also utilize a Chef data bag to store and load team information.
 
-### Set within recipe
+### Set within recipe/atribute file
 
 ```
-node.default['sensu-handlers']['teams'] = \
+default['sensu-handlers']['teams'] = \ # add node.default... if setting within recipe
 {
   ops: {
     pagerduty_api_key: '11111',

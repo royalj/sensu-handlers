@@ -20,5 +20,5 @@ Metrics/CyclomaticComplexity:
 Metrics/AbcSize:
   Max: 50
 
-Lint/PerceivedComplexity:
+Metrics/PerceivedComplexity:
   Max: 50

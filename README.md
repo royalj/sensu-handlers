@@ -1,6 +1,11 @@
 # Description
 
 # WORK IN PROGRESS
+The mailer and pagerduty handlers/scripts are my first priority to get working. Due to some
+differences in how the sensu puppet module and the sensu chef cookbook create handlers the
+scripts are having some small refactoring done. I'm no Ruby or Chef wizard so
+question/comments/concerns are welcome. Also right now writing spec and integration tests
+haven't taken a priority, but once I'm closer to a stable first pass tests will be added.
 
 # sensu-handlers
 
@@ -19,10 +24,10 @@ If this data is not provided, these handlers will do nothing.
 The simplest way to set the `teams` attribute is to do so explicitly within a recipe, but
 you can also utilize a Chef data bag to store and load team information.
 
-### Set within recipe
+### Set within recipe/atribute file
 
 ```
-node.default['sensu-handlers']['teams'] = \
+default['sensu-handlers']['teams'] = \ # add node.default... if setting within recipe
 {
   ops: {
     pagerduty_api_key: '11111',
@@ -86,18 +91,24 @@ Set `teams` attribute in recipe by loading data bag item:
 
 * `node['sensu-handlers']['handler_dir']` - Directory where Sensu handler scripts are stored. Defaults to `/opt/sensu/handlers`.
 * `node['sensu-handlers']['teams']` - Hash to define the different teams, which will effect the behavior of the handlers. Defaults to `{ ... }`.
-* `node['sensu-handlers']['default_handler_array']` - Array of handlers you want created. Array elements correspond to included recipes. Defaults to `%w(pagerduty mailer)`.
+* `node['sensu-handlers']['default_handlers']` -  Defaults to `\`.
+* `node['sensu-handlers']['mail_from']` -  Defaults to `bke_sensu@#{node['domain']}`.
 * `node['sensu-handlers']['dashboard_link']` -  Defaults to `https://sensu.#{node['domain']}`.
 * `node['sensu-handlers']['enable_aws_prune']` - Boolean to determine if aws_prune recipe should be included. Defaults to `false`.
 * `node['sensu-handlers']['jira_username']` -  Defaults to `sensu`.
 * `node['sensu-handlers']['jira_password']` -  Defaults to `sensu`.
 * `node['sensu-handlers']['jira_site']` -  Defaults to `jira.#{node['domain']}`.
+* `node['sensu']['use_ssl']` -  Defaults to `false`.
+* `node['sensu']['rabbitmq']['port']` -  Defaults to `5672`.
+* `node['sensu']['use_embedded_ruby']` -  Defaults to `true`.
 
 # Recipes
 
-* sensu-handlers/::default
-* sensu-handlers/::mailer
-* sensu-handlers/::pagerduty
+* sensu-handlers::default
+* sensu-handlers::jira
+* sensu-handlers::mailer
+* sensu-handlers::nodebot
+* sensu-handlers::pagerduty
 
 # License and Maintainer
 

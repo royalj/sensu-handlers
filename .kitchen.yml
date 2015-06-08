@@ -1,16 +1,33 @@
 ---
 driver:
   name: vagrant
+  provider: vmware_fusion
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
-  - name: ubuntu-12.04
-  - name: centos-6.4
+  - name: centos-6.6
 
 suites:
-  - name: default
+  - name: server
+    data_bags_path: test/integration/data_bags
     run_list:
-      - recipe[sensu-handlers/::default]
+      - recipe[sensu-handlers::default]
     attributes:
+      sensu-handlers:
+        default_handlers:
+          - sensu-handlers::mailer
+          - sensu-handlers::pagerduty
+        teams:
+          test:
+            notification_email: 'jacob.royal@buckle.com'
+            pagerduty_api_key: '3dedd332ace44cb09235ab4e1fe93efd'
+        page: true
+        dashboard_link: 'http://server-centos-66.vagrant.bkedev.com:3000'
+        mail_from: 'bke_sensu@vagrant.bkedev.com'
+      sensu:
+        use_ssl: false
+        use_embedded_ruby: true
+        rabbitmq:
+          port: 5672
