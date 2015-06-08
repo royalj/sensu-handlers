@@ -14,7 +14,6 @@ attributes = node['sensu-handlers']
 
 cookbook_file 'base.rb' do
   path "#{attributes['handler_dir']}/base.rb"
-  action :create_if_missing
   backup false
   owner 'sensu'
   group 'sensu'

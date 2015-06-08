@@ -10,7 +10,6 @@ end
 
 cookbook_file 'mailer.rb' do
   path "#{node['sensu-handlers']['handler_dir']}/mailer.rb"
-  action :create_if_missing
   backup false
   owner 'sensu'
   group 'sensu'

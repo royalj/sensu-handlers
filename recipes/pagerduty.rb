@@ -7,7 +7,6 @@ sensu_gem 'redphone'
 
 cookbook_file 'pagerduty.rb' do
   path "#{node['sensu-handlers']['handler_dir']}/pagerduty.rb"
-  action :create_if_missing
   backup false
   owner 'sensu'
   group 'sensu'
