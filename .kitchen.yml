@@ -24,7 +24,7 @@ suites:
             notification_email: 'jacob.royal@buckle.com'
             pagerduty_api_key: '3dedd332ace44cb09235ab4e1fe93efd'
         page: true
-        dashboard_link: 'http://server-centos-66.vagrant.bkedev.com'
+        dashboard_link: 'http://server-centos-66.vagrant.bkedev.com:3000'
         mail_from: 'bke_sensu@vagrant.bkedev.com'
       sensu:
         use_ssl: false

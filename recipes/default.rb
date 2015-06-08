@@ -2,6 +2,7 @@
 # Cookbook Name:: sensu-handlers
 # Recipe:: default
 #
+include_recipe 'sensu-handlers::_sensu'
 
 directory '/opt/sensu/handlers' do
   owner 'sensu'
