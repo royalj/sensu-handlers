@@ -21,11 +21,11 @@ suites:
           - sensu-handlers::pagerduty
         teams:
           test:
-            notification_email: 'jacob.royal@buckle.com'
-            pagerduty_api_key: '3dedd332ace44cb09235ab4e1fe93efd'
+            notification_email: ''
+            pagerduty_api_key: ''
         page: true
         dashboard_link: 'http://server-centos-66.vagrant.bkedev.com:3000'
-        mail_from: 'bke_sensu@vagrant.bkedev.com'
+        mail_from: 'sensu@vagrantup.com'
       sensu:
         use_ssl: false
         use_embedded_ruby: true
