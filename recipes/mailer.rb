@@ -16,11 +16,14 @@ cookbook_file 'mailer.rb' do
   mode '0755'
 end
 
+subdue = node['sensu-handlers']['subdue']['mailer']
+
 sensu_handler 'mailer' do
   type 'pipe'
   command "#{node['sensu-handlers']['handler_dir']}/mailer.rb"
   severities %w(ok warning critical unknown)
   additional(
+    subdue: subdue,
     teams: node['sensu-handlers']['teams'],
     mail_from: node['sensu-handlers']['mail_from']
   )

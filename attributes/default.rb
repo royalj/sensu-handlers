@@ -15,6 +15,9 @@ default['sensu-handlers']['mail_from'] = "sensu@#{node['domain']}"
 
 default['sensu-handlers']['dashboard_link'] = "https://sensu.#{node['domain']}"
 
+default['sensu-handlers']['subdue']['mailer'] = {}
+default['sensu-handlers']['subdue']['pagerduty'] = {}
+
 #<> Boolean to determine if aws_prune recipe should be included
 default['sensu-handlers']['enable_aws_prune'] = false
 
@@ -23,6 +26,8 @@ default['sensu-handlers']['jira_username'] = 'sensu'
 default['sensu-handlers']['jira_password'] = 'sensu'
 default['sensu-handlers']['jira_site'] = "jira.#{node['domain']}"
 
+# Use version 0.19.2-1 of Sensu
+default['sensu']['version']['0.19.2-1']
 # Disable ssl by default
 default['sensu']['use_ssl'] = false
 default['sensu']['rabbitmq']['port'] = '5672'
