@@ -23,7 +23,7 @@ suites:
           test:
             notification_email: ''
             pagerduty_api_key: ''
-        page: true
+        page: false
         dashboard_link: 'http://server-centos-66.vagrant.bkedev.com:3000'
         mail_from: 'sensu@vagrantup.com'
       sensu:
