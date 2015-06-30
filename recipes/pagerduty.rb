@@ -13,7 +13,7 @@ cookbook_file 'pagerduty.rb' do
   mode '0755'
 end
 
-subdue = node['sensu-handlers']['subdue']['pagerduty'] = {}
+subdue = node['sensu-handlers']['subdue']['pagerduty']
 
 sensu_handler 'pagerduty' do
   type 'pipe'
