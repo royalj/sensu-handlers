@@ -18,7 +18,6 @@ end
 
 subdue = node['sensu-handlers']['subdue']['mailer']
 
-
 sensu_handler 'mailer' do
   type 'pipe'
   command "#{node['sensu-handlers']['handler_dir']}/mailer.rb"
