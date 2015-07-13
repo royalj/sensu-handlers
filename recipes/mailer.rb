@@ -25,6 +25,7 @@ sensu_handler 'mailer' do
   additional(
     subdue: subdue,
     teams: node['sensu-handlers']['teams'],
-    mail_from: node['sensu-handlers']['mail_from']
+    mail_from: node['sensu-handlers']['mail_from'],
+    smtp_config: node['sensu-handlers']['smtp_config']
   )
 end

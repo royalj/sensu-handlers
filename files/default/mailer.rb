@@ -64,17 +64,17 @@ class Mailer < BaseHandler
 
     mail_from = settings['handlers'][self.class.name.downcase]['mail_from']
 
-    mailer = settings['handlers']
+    smtp_config = settings['handlers']['mailer']['smtp_config']
 
-    delivery_method = mailer['delivery_method'] || 'smtp'
-    smtp_address = mailer['smtp_address'] || 'localhost'
-    smtp_port = mailer['smtp_port'] || '25'
-    smtp_domain = mailer['smtp_domain'] || 'localhost.localdomain'
+    delivery_method = smtp_config['delivery_method'] || 'smtp'
+    smtp_address = smtp_config['smtp_address'] || 'localhost'
+    smtp_port = smtp_config['smtp_port'] || '25'
+    smtp_domain = smtp_config['smtp_domain'] || 'localhost.localdomain'
 
-    smtp_username = mailer['smtp_username'] || nil
-    smtp_password = mailer['smtp_password'] || nil
-    smtp_authentication = mailer['smtp_authentication'] || :plain
-    smtp_enable_starttls_auto = mailer['smtp_enable_starttls_auto'] == 'false' ? false : true
+    smtp_username = smtp_config['smtp_username'] || nil
+    smtp_password = smtp_config['smtp_password'] || nil
+    smtp_authentication = smtp_config['smtp_authentication'] || :plain
+    smtp_enable_starttls_auto = smtp_config['smtp_enable_starttls_auto'] == 'false' ? false : true
 
     body = full_description
     subject = "#{action_to_string} - #{short_name}: #{@event['check']['notification']}"
