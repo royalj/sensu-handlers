@@ -5,6 +5,6 @@ license           'Apache 2.0'
 description       'Installs/Configures sensu-handlers'
 long_description  'Install/Configures sensu-handlers'
 source_url        'https://github.com/royalj/sensu-handlers'
-version           '0.1.6'
+version           '0.1.7'
 
-depends 'sensu', '~> 2.10.0'
+depends 'sensu', '~> 2.10'
